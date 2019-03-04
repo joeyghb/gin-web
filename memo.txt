@@ -1,0 +1,8 @@
+go run get_url_one_param.go
+http://localhost:8081/hello/joey
+
+go run get_url_multi_param.go
+http://localhost:8081/hello/joey/play
+
+go run get_url_by_query.go
+http://localhost:8081/hello/joey/play?firstname=Luffy&lastname=Chu
