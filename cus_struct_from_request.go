@@ -1,6 +1,7 @@
 package main
 
 import (
+    "net/http"
     "github.com/gin-gonic/gin"
 )
 
@@ -30,7 +31,7 @@ type StructD struct {
 func GetDataB(c *gin.Context) {
     var b StructB
     c.Bind(&b)
-    c.JSON(200, gin.H{
+    c.JSON(http.StatusOK, gin.H{
         "a": b.NestedStruct,
         "b": b.FieldB,
     })
@@ -41,7 +42,7 @@ func GetDataB(c *gin.Context) {
 func GetDataC(c *gin.Context) {
     var b StructC
     c.Bind(&b)
-    c.JSON(200, gin.H{
+    c.JSON(http.StatusOK, gin.H{
         "a": b.NestedStructPointer,
         "c": b.FieldC,
     })
@@ -52,17 +53,8 @@ func GetDataC(c *gin.Context) {
 func GetDataD(c *gin.Context) {
     var b StructD
     c.Bind(&b)
-    c.JSON(200, gin.H{
+    c.JSON(http.StatusOK, gin.H{
         "x": b.NestedAnonyStruct,
         "d": b.FieldD,
     })
-}
-
-func main() {
-    r := gin.Default()
-    r.GET("/getb", GetDataB)
-    r.GET("/getc", GetDataC)
-    r.GET("/getd", GetDataD)
-
-    r.Run(":18080")
 }

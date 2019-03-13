@@ -18,7 +18,7 @@ type Rsp struct {
 }
 
 //Post {"user": "Pgluffy","password": "123"}
-func bindData(c *gin.Context) {
+func bind_json(c *gin.Context) {
 	var reqjson Req
 	var rspjson Rsp
 
@@ -40,10 +40,4 @@ func bindData(c *gin.Context) {
 	} else {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Get Req Data Error"})
 	}
-}
-
-func main() {
-	router := gin.Default()
-	router.POST("/testbind", bindData)
-	router.Run(":18080")
 }

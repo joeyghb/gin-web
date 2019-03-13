@@ -14,8 +14,8 @@ FROM build_base AS server_builder
 COPY . .
 ENV GOOS=linux
 ENV GOARCH=amd64
-#RUN go build -o /app  get_url_one_param.go -tags netgo -ldflags '-w -extldflags "-static"' .
-RUN go build -o app get_url_one_param.go
+#RUN go build -o /app -tags netgo -ldflags '-w -extldflags "-static"' .
+RUN go build -o app 
 
 ### Put the binary onto base image
 FROM plugins/base:linux-amd64

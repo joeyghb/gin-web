@@ -24,9 +24,3 @@ func bindPostData(c *gin.Context) {
 		})
 	}
 }
-
-func main() {
-	router := gin.Default()
-	router.POST("/testing", bindPostData)
-	router.Run(":18080")
-}
