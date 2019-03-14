@@ -18,10 +18,20 @@ ENV GOARCH=amd64
 RUN go build -o app get_url_one_param.go
 
 ### Put the binary onto base image
-FROM plugins/base:linux-amd64
+#FROM plugins/base:linux-amd64
+#LABEL maintainer="Pgluffy <kuang7156@gmail.com>"
+#EXPOSE 18080
+#WORKDIR /app
+#COPY --from=server_builder /app /app
+#ENTRYPOINT ./app
+#CMD ["/app"]
+
+### Put the binary onto Heroku image
+FROM heroku/heroku:16
 LABEL maintainer="Pgluffy <kuang7156@gmail.com>"
 EXPOSE 18080
 WORKDIR /app
 COPY --from=server_builder /app /app
-ENTRYPOINT ./app
-#CMD ["/app"]
+#ENTRYPOINT "./app"
+RUN chmod 744 /app
+CMD /app
