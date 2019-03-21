@@ -16,14 +16,14 @@ type Configuration struct {
 }
 
 type HomeSpent struct {
-	ID    bson.ObjectId `json:"id" bson:"_id,omitempty"`
-	Date  string        `json:"date" bson:"date"`
-	Item  string        `json:"item" bson:"item"`
-	Cost  int           `json:"cost" bson:"cost"`
-	User  string        `json:"user" bson:"user"`
-	Type  string        `json:"type" bson:"type"`
-	Store string        `json:"store" bson:"store"`
-	Memo  string        `json:"memo" bson:"memo"`
+	ID    bson.ObjectId `bson:"_id,omitempty"`
+	Date  string        "bson:`date`"
+	Item  string        `bson:"item"`
+	Cost  int           `bson:"cost"`
+	User  string        `bson:"user"`
+	Type  string        `bson:"type"`
+	Store string        `bson:"store"`
+	Memo  string        `bson:"memo"`
 }
 
 func GetConfig(c *gin.Context) {
@@ -67,7 +67,7 @@ func TestFindHomeSpent(c *gin.Context) {
 
 	strArticleID := bson.ObjectId(homespent.ID).Hex()
 
-	fmt.Printf("ID : %s\n", homespent.ID)
+	fmt.Printf("ID_Hex : %s\n", homespent.ID)
 	fmt.Printf("ID : %s\n", strArticleID)
 
 	fmt.Printf("Date : %s\n", homespent.Date)
